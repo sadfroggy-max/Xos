@@ -1,7 +1,4 @@
-#include <onix/stdarg.h>
-#include <onix/console.h>
-#include <onix/stdio.h>
-#include <onix/device.h>
+#include "hyc.h"
 
 static char buf[1024];
 

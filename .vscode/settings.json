@@ -4,6 +4,7 @@
         "stdio.h": "c",
         "cmath": "cpp",
         "string.h": "c",
-        "fs.h": "c"
+        "fs.h": "c",
+        "hyc.h": "c"
     }
 }

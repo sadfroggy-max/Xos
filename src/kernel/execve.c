@@ -1,14 +1,4 @@
-#include <onix/types.h>
-#include <onix/syscall.h>
-#include <onix/fs.h>
-#include <onix/memory.h>
-#include <onix/string.h>
-#include <onix/stdlib.h>
-#include <onix/assert.h>
-#include <onix/debug.h>
-#include <onix/task.h>
-#include <onix/string.h>
-#include <onix/arena.h>
+#include "hyc.h"
 
 #if 0
 #include <elf.h>

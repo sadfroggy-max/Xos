@@ -1,5 +1,4 @@
-#include <onix/task.h>
-#include <onix/errno.h>
+#include "hyc.h"
 
 extern task_t *task_table[TASK_NR];
 

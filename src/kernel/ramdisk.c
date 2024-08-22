@@ -1,10 +1,4 @@
-#include <onix/memory.h>
-#include <onix/string.h>
-#include <onix/device.h>
-#include <onix/stdio.h>
-#include <onix/errno.h>
-#include <onix/assert.h>
-#include <onix/debug.h>
+#include "hyc.h"
 
 #define SECTOR_SIZE 512
 

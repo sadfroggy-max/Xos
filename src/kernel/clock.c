@@ -1,9 +1,4 @@
-#include <onix/io.h>
-#include <onix/interrupt.h>
-#include <onix/assert.h>
-#include <onix/debug.h>
-#include <onix/task.h>
-#include <onix/timer.h>
+#include "hyc.h"
 
 #define PIT_CHAN0_REG 0X40
 #define PIT_CHAN2_REG 0X42

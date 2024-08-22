@@ -1,8 +1,4 @@
-#include <onix/arena.h>
-#include <onix/memory.h>
-#include <onix/string.h>
-#include <onix/stdlib.h>
-#include <onix/assert.h>
+#include "hyc.h"
 
 #define BUF_COUNT 4 // 堆内存缓存页数量
 

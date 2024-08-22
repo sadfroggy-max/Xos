@@ -1,4 +1,4 @@
-#include <onix/mio.h>
+#include "hyc.h"
 
 u8 minb(u32 addr)
 {

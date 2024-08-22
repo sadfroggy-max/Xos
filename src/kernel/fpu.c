@@ -1,10 +1,4 @@
-#include <onix/fpu.h>
-#include <onix/task.h>
-#include <onix/cpu.h>
-#include <onix/interrupt.h>
-#include <onix/arena.h>
-#include <onix/debug.h>
-#include <onix/assert.h>
+#include "hyc.h"
 
 #define LOGK(fmt, args...) DEBUGK(fmt, ##args)
 

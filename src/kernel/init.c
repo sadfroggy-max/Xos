@@ -1,7 +1,4 @@
-#include <onix/types.h>
-#include <onix/syscall.h>
-#include <onix/stdio.h>
-#include <onix/task.h>
+#include "hyc.h"
 
 // 进入用户态，准备内核栈
 // 保证栈顶占用足够的大小

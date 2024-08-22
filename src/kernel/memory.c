@@ -1,15 +1,4 @@
-#include <onix/memory.h>
-#include <onix/types.h>
-#include <onix/debug.h>
-#include <onix/assert.h>
-#include <onix/stdlib.h>
-#include <onix/string.h>
-#include <onix/bitmap.h>
-#include <onix/multiboot2.h>
-#include <onix/task.h>
-#include <onix/syscall.h>
-#include <onix/fs.h>
-#include <onix/printk.h>
+#include "hyc.h"
 
 #define LOGK(fmt, args...) DEBUGK(fmt, ##args)
 // #define LOGK(fmt, args...)

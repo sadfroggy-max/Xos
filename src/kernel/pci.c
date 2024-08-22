@@ -1,11 +1,4 @@
-
-#include <onix/pci.h>
-#include <onix/io.h>
-#include <onix/arena.h>
-#include <onix/assert.h>
-#include <onix/debug.h>
-#include <onix/list.h>
-#include <onix/arena.h>
+#include "hyc.h"
 
 #define LOGK(fmt, args...) DEBUGK(fmt, ##args)
 

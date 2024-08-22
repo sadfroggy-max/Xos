@@ -1,12 +1,4 @@
-#include <onix/timer.h>
-#include <onix/interrupt.h>
-#include <onix/syscall.h>
-#include <onix/task.h>
-#include <onix/mutex.h>
-#include <onix/arena.h>
-#include <onix/errno.h>
-#include <onix/assert.h>
-#include <onix/debug.h>
+#include "hyc.h"
 
 #define LOGK(fmt, args...) DEBUGK(fmt, ##args)
 

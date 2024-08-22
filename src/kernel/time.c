@@ -1,7 +1,4 @@
-#include <onix/time.h>
-#include <onix/debug.h>
-#include <onix/stdlib.h>
-#include <onix/rtc.h>
+#include "hyc.h"
 
 #define LOGK(fmt, args...) DEBUGK(fmt, ##args)
 

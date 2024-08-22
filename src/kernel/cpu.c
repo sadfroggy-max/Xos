@@ -1,4 +1,4 @@
-#include <onix/cpu.h>
+#include "hyc.h"
 
 // 检测是否支持 cpuid 指令
 bool cpu_check_cpuid()

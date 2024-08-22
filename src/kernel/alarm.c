@@ -1,5 +1,4 @@
-#include <onix/task.h>
-#include <onix/timer.h>
+#include "hyc.h"
 
 extern int sys_kill();
 

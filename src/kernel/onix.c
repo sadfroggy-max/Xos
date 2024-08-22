@@ -1,7 +1,4 @@
-#include <onix/types.h>
-#include <onix/net/chksum.h>
-#include <onix/string.h>
-#include <onix/debug.h>
+#include "hyc.h"
 
 static u32 __attribute__((section(".onix.addr"))) kernel_addr = 0x20000;
 static u32 __attribute__((section(".onix.size"))) kernel_size = 0;

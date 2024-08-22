@@ -1,6 +1,4 @@
-#include <onix/global.h>
-#include <onix/string.h>
-#include <onix/debug.h>
+#include "hyc.h"
 
 descriptor_t gdt[GDT_SIZE]; // 内核全局描述符表
 pointer_t gdt_ptr;          // 内核全局描述符表指针

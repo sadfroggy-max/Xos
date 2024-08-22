@@ -1,9 +1,4 @@
-#include <onix/uname.h>
-#include <onix/memory.h>
-#include <onix/task.h>
-#include <onix/string.h>
-#include <onix/debug.h>
-#include <onix/errno.h>
+#include "hyc.h"
 
 #define LOGK(fmt, args...) DEBUGK(fmt, ##args)
 

@@ -1,8 +1,4 @@
-#include <onix/mutex.h>
-#include <onix/task.h>
-#include <onix/interrupt.h>
-#include <onix/assert.h>
-#include <onix/errno.h>
+#include "hyc.h"
 
 void mutex_init(mutex_t *mutex)
 {

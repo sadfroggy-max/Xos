@@ -1,6 +1,4 @@
-#include <onix/isa.h>
-#include <onix/assert.h>
-#include <onix/io.h>
+#include "hyc.h"
 
 enum
 {

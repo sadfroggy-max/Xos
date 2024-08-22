@@ -1,22 +1,4 @@
-#include <onix/types.h>
-#include <onix/pci.h>
-#include <onix/io.h>
-#include <onix/mio.h>
-#include <onix/memory.h>
-#include <onix/task.h>
-#include <onix/arena.h>
-#include <onix/string.h>
-#include <onix/interrupt.h>
-#include <onix/net.h>
-#include <onix/assert.h>
-#include <onix/debug.h>
-#include <onix/syscall.h>
-#include <onix/stdlib.h>
-#include <onix/printk.h>
-#include <onix/errno.h>
-#include <onix/net/pbuf.h>
-#include <onix/net/chksum.h>
-#include <onix/net/netif.h>
+#include "hyc.h"
 
 #define LOGK(fmt, args...) DEBUGK(fmt, ##args)
 

@@ -1,4 +1,4 @@
-#include <onix/interrupt.h>
+#include "hyc.h"
 
 extern void tss_init();
 extern void memory_map_init();

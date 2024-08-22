@@ -1,6 +1,4 @@
-#include <onix/interrupt.h>
-#include <onix/syscall.h>
-#include <onix/debug.h>
+#include "hyc.h"
 
 // #include <asm/unistd_32.h>
 

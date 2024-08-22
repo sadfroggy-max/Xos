@@ -1,11 +1,4 @@
-
-#include <onix/types.h>
-#include <onix/debug.h>
-#include <onix/interrupt.h>
-#include <onix/io.h>
-#include <onix/time.h>
-#include <onix/assert.h>
-#include <onix/stdlib.h>
+#include "hyc.h"
 
 #define LOGK(fmt, args...) DEBUGK(fmt, ##args)
 
