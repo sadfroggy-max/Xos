@@ -1,5 +1,5 @@
-#ifndef ONIX_TASK_H
-#define ONIX_TASK_H
+#ifndef XOS_TASK_H
+#define XOS_TASK_H
 
 #include "./types.h"
 #include "./list.h"

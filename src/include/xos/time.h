@@ -1,5 +1,5 @@
-#ifndef ONIX_TIME_H
-#define ONIX_TIME_H
+#ifndef XOS_TIME_H
+#define XOS_TIME_H
 
 #include "./types.h"
 

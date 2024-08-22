@@ -1,5 +1,5 @@
-#ifndef ONIX_MIO_H
-#define ONIX_MIO_H
+#ifndef XOS_MIO_H
+#define XOS_MIO_H
 
 #include "./types.h"
 

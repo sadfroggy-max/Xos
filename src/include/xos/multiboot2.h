@@ -1,5 +1,5 @@
-#ifndef ONIX_MULTIBOOT2
-#define ONIX_MULTIBOOT2
+#ifndef XOS_MULTIBOOT2
+#define XOS_MULTIBOOT2
 
 #include "./types.h"
 

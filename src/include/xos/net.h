@@ -1,5 +1,5 @@
-#ifndef ONIX_NET_H
-#define ONIX_NET_H
+#ifndef XOS_NET_H
+#define XOS_NET_H
 
 #include "./net/types.h"
 #include "./net/eth.h"

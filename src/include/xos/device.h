@@ -1,5 +1,5 @@
-#ifndef ONIX_DEVICE_H
-#define ONIX_DEVICE_H
+#ifndef XOS_DEVICE_H
+#define XOS_DEVICE_H
 
 #include "./types.h"
 #include "./list.h"

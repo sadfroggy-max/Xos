@@ -1,5 +1,7 @@
-#ifndef ONIX_RTC_H
-#define ONIX_RTC_H
+#ifndef XOS_RTC_H
+#define XOS_RTC_H
+
+#include "./types.h"
 
 void set_alarm(u32 secs);
 u8 cmos_read(u8 addr);

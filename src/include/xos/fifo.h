@@ -1,5 +1,5 @@
-#ifndef ONIX_FIFO_H
-#define ONIX_FIFO_H
+#ifndef XOS_FIFO_H
+#define XOS_FIFO_H
 
 #include "./types.h"
 

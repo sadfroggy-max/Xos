@@ -1,5 +1,5 @@
-#ifndef ONIX_CONSOLE_H
-#define ONIX_CONSOLE_H
+#ifndef XOS_CONSOLE_H
+#define XOS_CONSOLE_H
 
 #include "./types.h"
 

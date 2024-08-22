@@ -1,5 +1,5 @@
-#ifndef ONIX_MUTEX_H
-#define ONIX_MUTEX_H
+#ifndef XOS_MUTEX_H
+#define XOS_MUTEX_H
 
 #include "./types.h"
 #include "./list.h"

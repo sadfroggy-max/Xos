@@ -1,5 +1,5 @@
-#ifndef ONIX_MEMORY_H
-#define ONIX_MEMORY_H
+#ifndef XOS_MEMORY_H
+#define XOS_MEMORY_H
 
 #include "./types.h"
 

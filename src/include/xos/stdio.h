@@ -1,5 +1,5 @@
-#ifndef ONIX_STDIO_H
-#define ONIX_STDIO_H
+#ifndef XOS_STDIO_H
+#define XOS_STDIO_H
 
 #include "./stdarg.h"
 

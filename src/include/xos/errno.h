@@ -1,5 +1,5 @@
-#ifndef ONIX_ERRNO_H
-#define ONIX_ERRNO_H
+#ifndef XOS_ERRNO_H
+#define XOS_ERRNO_H
 
 #if 0
 #include <asm-generic/errno-base.h>

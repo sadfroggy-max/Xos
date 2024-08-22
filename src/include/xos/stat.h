@@ -1,5 +1,5 @@
-#ifndef ONIX_STAT_H
-#define ONIX_STAT_H
+#ifndef XOS_STAT_H
+#define XOS_STAT_H
 
 #include "./types.h"
 

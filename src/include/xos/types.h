@@ -1,5 +1,5 @@
-#ifndef ONIX_TYPES_H
-#define ONIX_TYPES_H
+#ifndef XOS_TYPES_H
+#define XOS_TYPES_H
 
 #include "./onix.h"
 #include "./errno.h"

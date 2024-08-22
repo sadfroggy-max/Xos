@@ -1,6 +1,5 @@
-
-#ifndef ONIX_DEBUG_H
-#define ONIX_DEBUG_H
+#ifndef XOS_DEBUG_H
+#define XOS_DEBUG_H
 
 void debugk(char *file, int line, const char *fmt, ...);
 

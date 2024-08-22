@@ -1,5 +1,5 @@
-#ifndef ONIX_TIMER_H
-#define ONIX_TIMER_H
+#ifndef XOS_TIMER_H
+#define XOS_TIMER_H
 
 #include "./types.h"
 #include "./list.h"

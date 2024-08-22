@@ -1,5 +1,5 @@
-#ifndef ONIX_IDE_H
-#define ONIX_IDE_H
+#ifndef XOS_IDE_H
+#define XOS_IDE_H
 
 #include "./types.h"
 #include "./mutex.h"

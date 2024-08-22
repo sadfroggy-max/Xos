@@ -1,5 +1,5 @@
-#ifndef ONIX_PCI_H
-#define ONIX_PCI_H
+#ifndef XOS_PCI_H
+#define XOS_PCI_H
 
 #include "./types.h"
 #include "./list.h"

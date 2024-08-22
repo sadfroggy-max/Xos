@@ -1,5 +1,5 @@
-#ifndef ONIX_LIST_H
-#define ONIX_LIST_H
+#ifndef XOS_LIST_H
+#define XOS_LIST_H
 
 #include "./types.h"
 

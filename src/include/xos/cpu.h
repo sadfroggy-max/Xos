@@ -1,5 +1,5 @@
-#ifndef ONIX_CPU_H
-#define ONIX_CPU_H
+#ifndef XOS_CPU_H
+#define XOS_CPU_H
 
 #include "./types.h"
 

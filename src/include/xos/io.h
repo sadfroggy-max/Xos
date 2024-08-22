@@ -1,5 +1,5 @@
-#ifndef ONIX_IO_H
-#define ONIX_IO_H
+#ifndef XOS_IO_H
+#define XOS_IO_H
 
 #include "./types.h"
 

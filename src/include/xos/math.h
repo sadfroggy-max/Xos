@@ -1,5 +1,5 @@
-#ifndef ONIX_MATH_H
-#define ONIX_MATH_H
+#ifndef XOS_MATH_H
+#define XOS_MATH_H
 
 double sin(double x);
 double cos(double x);

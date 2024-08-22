@@ -1,5 +1,5 @@
-#ifndef ONIX_FS_H
-#define ONIX_FS_H
+#ifndef XOS_FS_H
+#define XOS_FS_H
 
 #include "./types.h"
 #include "./list.h"

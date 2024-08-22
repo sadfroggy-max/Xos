@@ -1,5 +1,5 @@
-#ifndef ONIX_INTERRUPT_H
-#define ONIX_INTERRUPT_H
+#ifndef XOS_INTERRUPT_H
+#define XOS_INTERRUPT_H
 
 #include "./types.h"
 

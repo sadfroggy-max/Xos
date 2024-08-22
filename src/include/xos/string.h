@@ -1,5 +1,5 @@
-#ifndef ONIX_STRING_H
-#define ONIX_STRING_H
+#ifndef XOS_STRING_H
+#define XOS_STRING_H
 
 #include "./types.h"
 

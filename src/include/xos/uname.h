@@ -1,5 +1,5 @@
-#ifndef ONIX_UNAME_H
-#define ONIX_UNAME_H
+#ifndef XOS_UNAME_H
+#define XOS_UNAME_H
 
 #include "./types.h"
 

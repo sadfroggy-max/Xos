@@ -1,5 +1,5 @@
-#ifndef ONIX_SYSCALL_H
-#define ONIX_SYSCALL_H
+#ifndef XOS_SYSCALL_H
+#define XOS_SYSCALL_H
 
 #include "./types.h"
 #include "./stat.h"

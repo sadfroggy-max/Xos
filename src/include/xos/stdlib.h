@@ -1,5 +1,5 @@
-#ifndef ONIX_STDLIB_H
-#define ONIX_STDLIB_H
+#ifndef XOS_STDLIB_H
+#define XOS_STDLIB_H
 
 #include "./types.h"
 

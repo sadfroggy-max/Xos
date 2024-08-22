@@ -1,4 +1,4 @@
-#ifndef ONIX_TTY_H
+#ifndef XOS_TTY_H
 
 #include "./types.h"
 

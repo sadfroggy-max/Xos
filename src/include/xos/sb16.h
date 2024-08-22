@@ -1,5 +1,5 @@
-#ifndef ONIX_SB16_H
-#define ONIX_SB16_H
+#ifndef XOS_SB16_H
+#define XOS_SB16_H
 
 typedef enum sb16_cmd_t
 {

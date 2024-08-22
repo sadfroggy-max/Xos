@@ -1,5 +1,5 @@
-#ifndef ONIX_GLOBAL_H
-#define ONIX_GLOBAL_H
+#ifndef XOS_GLOBAL_H
+#define XOS_GLOBAL_H
 
 #include "./types.h"
 

@@ -1,5 +1,5 @@
-#ifndef ONIX_PRINTK_H
-#define ONIX_PRINTK_H
+#ifndef XOS_PRINTK_H
+#define XOS_PRINTK_H
 
 int printk(const char *fmt, ...);
 

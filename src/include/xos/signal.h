@@ -1,5 +1,5 @@
-#ifndef ONIX_SIGNAL_H
-#define ONIX_SIGNAL_H
+#ifndef XOS_SIGNAL_H
+#define XOS_SIGNAL_H
 
 #include "./types.h"
 

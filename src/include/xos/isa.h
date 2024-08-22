@@ -1,5 +1,5 @@
-#ifndef ONIX_ISA_H
-#define ONIX_ISA_H
+#ifndef XOS_ISA_H
+#define XOS_ISA_H
 
 #include "./types.h"
 

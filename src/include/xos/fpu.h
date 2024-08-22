@@ -1,5 +1,5 @@
-#ifndef ONIX_FPU_H
-#define ONIX_FPU_H
+#ifndef XOS_FPU_H
+#define XOS_FPU_H
 
 #include "./types.h"
 #include "./task.h"

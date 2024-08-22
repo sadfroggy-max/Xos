@@ -1,5 +1,5 @@
-#ifndef ONIX_STDARG_H
-#define ONIX_STDARG_H
+#ifndef XOS_STDARG_H
+#define XOS_STDARG_H
 
 typedef char *va_list;
 
