@@ -1,6 +1,6 @@
-#include <onix/syscall.h>
-#include <onix/stdio.h>
-#include <onix/signal.h>
+#include "../include/xos/syscall.h"
+#include "../include/xos/stdio.h"
+#include "../include/xos/signal.h"
 
 static int signal_handler(int sig)
 {
