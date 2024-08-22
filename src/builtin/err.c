@@ -1,4 +1,4 @@
-#include <onix/stdio.h>
+#include "../include/xos/stdio.h"
 
 int main()
 {

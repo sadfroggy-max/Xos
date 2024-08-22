@@ -1,6 +1,6 @@
-#include <onix/types.h>
-#include <onix/stdio.h>
-#include <onix/syscall.h>
+#include "../include/xos/types.h"
+#include "../include/xos/stdio.h"
+#include "../include/xos/syscall.h"
 
 int main()
 {

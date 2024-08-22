@@ -1,6 +1,6 @@
-#include <onix/syscall.h>
-#include <onix/signal.h>
-#include <onix/stdlib.h>
+#include "../include/xos/syscall.h"
+#include "../include/xos/signal.h"
+#include "../include/xos/stdlib.h"
 
 int main(int argc, char *argv[])
 {

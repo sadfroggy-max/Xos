@@ -1,9 +1,9 @@
-#include <onix/types.h>
-#include <onix/stdio.h>
-#include <onix/syscall.h>
-#include <onix/string.h>
-#include <onix/fs.h>
-#include <onix/sb16.h>
+#include "../include/xos/types.h"
+#include "../include/xos/stdio.h"
+#include "../include/xos/syscall.h"
+#include "../include/xos/string.h"
+#include "../include/xos/fs.h"
+#include "../include/xos/sb16.h"
 
 #define BUFLEN 0x4000
 

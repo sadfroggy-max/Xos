@@ -1,13 +1,13 @@
-#ifdef ONIX
-#include <onix/types.h>
-#include <onix/stdio.h>
-#include <onix/syscall.h>
-#include <onix/string.h>
-#include <onix/fs.h>
-#include <onix/errno.h>
+#ifdef XOS
+#include "../include/xos/types.h"
+#include "../include/xos/stdio.h"
+#include "../include/xos/syscall.h"
+#include "../include/xos/string.h"
+#include "../include/xos/fs.h"
+#include "../include/xos/errno.h"
 #else
-#include <stdio.h>
-#include <string.h>
+#include "../include/xos/stdio.h"
+#include "../include/xos/string.h"
 #include <sys/file.h>
 #endif
 

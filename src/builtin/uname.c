@@ -1,8 +1,8 @@
-#include <onix/types.h>
-#include <onix/stdio.h>
-#include <onix/syscall.h>
-#include <onix/uname.h>
-#include <onix/string.h>
+#include "../include/xos/types.h"
+#include "../include/xos/stdio.h"
+#include "../include/xos/syscall.h"
+#include "../include/xos/string.h"
+#include "../include/xos/uname.h"
 
 int main(int argc, char const *argv[], char const *envp[])
 {

@@ -1,6 +1,6 @@
-#include <onix/stdio.h>
-#include <onix/syscall.h>
-#include <onix/math.h>
+#include "../include/xos/stdio.h"
+#include "../include/xos/syscall.h"
+#include "../include/xos/math.h"
 
 int main(int argc, char const *argv[])
 {

@@ -3,17 +3,17 @@
  * @date: 2022-01-23
  */
 
-#include <onix/stdio.h>
-#include <onix/syscall.h>
-#include <onix/string.h>
-#include <onix/stdlib.h>
-#include <onix/assert.h>
-#include <onix/fs.h>
-#include <onix/stat.h>
-#include <onix/time.h>
-#include <onix/tty.h>
-#include <onix/errno.h>
-#include <onix/signal.h>
+#include "../include/xos/stdio.h"
+#include "../include/xos/syscall.h"
+#include "../include/xos/string.h"
+#include "../include/xos/stdlib.h"
+#include "../include/xos/assert.h"
+#include "../include/xos/fs.h"
+#include "../include/xos/stat.h"
+#include "../include/xos/time.h"
+#include "../include/xos/tty.h"
+#include "../include/xos/errno.h"
+#include "../include/xos/signal.h"
 
 #define MAX_CMD_LEN 256
 #define MAX_ARG_NR 16

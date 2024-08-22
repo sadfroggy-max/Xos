@@ -1,5 +1,5 @@
-#include <onix/syscall.h>
-#include <onix/stdio.h>
+#include "../include/xos/stdio.h"
+#include "../include/xos/syscall.h"
 
 int main(int argc, char const *argv[])
 {
