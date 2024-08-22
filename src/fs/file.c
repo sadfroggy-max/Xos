@@ -1,6 +1,6 @@
-#include <onix/fs.h>
-#include <onix/task.h>
-#include <onix/assert.h>
+#include "../include/xos/assert.h"
+#include "../include/xos/fs.h"
+#include "../include/xos/task.h"
 
 #define FILE_NR 128
 

@@ -1,11 +1,11 @@
-#include <onix/device.h>
-#include <onix/syscall.h>
-#include <onix/stat.h>
-#include <onix/stdio.h>
-#include <onix/assert.h>
-#include <onix/fs.h>
-#include <onix/string.h>
-#include <onix/net.h>
+#include "../include/xos/device.h"
+#include "../include/xos/syscall.h"
+#include "../include/xos/stat.h"
+#include "../include/xos/stdio.h"
+#include "../include/xos/assert.h"
+#include "../include/xos/fs.h"
+#include "../include/xos/string.h"
+#include "../include/xos/net.h"
 
 extern file_t file_table[];
 

@@ -1,18 +1,18 @@
-#include <onix/types.h>
-#include <onix/device.h>
-#include <onix/buffer.h>
-#include <onix/time.h>
-#include <onix/memory.h>
-#include <onix/task.h>
-#include <onix/arena.h>
-#include <onix/fs.h>
-#include <onix/string.h>
-#include <onix/stdlib.h>
-#include <onix/syscall.h>
-#include <onix/debug.h>
-#include <onix/assert.h>
-#include <onix/errno.h>
-#include <onix/stat.h>
+#include "../../include/xos/types.h"
+#include "../../include/xos/device.h"
+#include "../../include/xos/buffer.h"
+#include "../../include/xos/time.h"
+#include "../../include/xos/memory.h"
+#include "../../include/xos/task.h"
+#include "../../include/xos/arena.h"
+#include "../../include/xos/fs.h"
+#include "../../include/xos/string.h"
+#include "../../include/xos/stdlib.h"
+#include "../../include/xos/syscall.h"
+#include "../../include/xos/debug.h"
+#include "../../include/xos/assert.h"
+#include "../../include/xos/errno.h"
+#include "../../include/xos/stat.h"
 
 #define LOGK(fmt, args...) DEBUGK(fmt, ##args)
 

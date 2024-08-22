@@ -1,8 +1,8 @@
-#ifndef ONIX_MINIX_H
-#define ONIX_MINIX_H
+#ifndef XOS_MINIX_H
+#define XOS_MINIX_H
 
-#include <onix/fs.h>
-#include <onix/buffer.h>
+#include "../../include/xos/buffer.h"
+#include "../../include/xos/fs.h"
 
 #define BLOCK_SIZE 1024                       // 块大小
 #define SECTOR_SIZE 512                       // 扇区大小

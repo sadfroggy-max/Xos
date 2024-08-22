@@ -1,12 +1,12 @@
-#include <onix/fs.h>
-#include <onix/task.h>
-#include <onix/memory.h>
-#include <onix/arena.h>
-#include <onix/stat.h>
-#include <onix/fifo.h>
-#include <onix/assert.h>
-#include <onix/debug.h>
-#include <onix/errno.h>
+#include "../../include/xos/fs.h"
+#include "../../include/xos/task.h"
+#include "../../include/xos/memory.h"
+#include "../../include/xos/arena.h"
+#include "../../include/xos/stat.h"
+#include "../../include/xos/fifo.h"
+#include "../../include/xos/assert.h"
+#include "../../include/xos/debug.h"
+#include "../../include/xos/errno.h"
 
 #define LOGK(fmt, args...) DEBUGK(fmt, ##args)
 

@@ -1,13 +1,13 @@
-#include <onix/fs.h>
-#include <onix/buffer.h>
-#include <onix/device.h>
-#include <onix/assert.h>
-#include <onix/string.h>
-#include <onix/stat.h>
-#include <onix/task.h>
-#include <onix/syscall.h>
-#include <onix/stdlib.h>
-#include <onix/debug.h>
+#include "../include/xos/fs.h"
+#include "../include/xos/buffer.h"
+#include "../include/xos/device.h"
+#include "../include/xos/assert.h"
+#include "../include/xos/string.h"
+#include "../include/xos/stat.h"
+#include "../include/xos/task.h"
+#include "../include/xos/syscall.h"
+#include "../include/xos/stdlib.h"
+#include "../include/xos/debug.h"
 
 #define LOGK(fmt, args...) DEBUGK(fmt, ##args)
 
