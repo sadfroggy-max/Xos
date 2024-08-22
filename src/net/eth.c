@@ -1,9 +1,4 @@
-#include <onix/net.h>
-#include <onix/net/pkt.h>
-#include <onix/string.h>
-#include <onix/debug.h>
-#include <onix/errno.h>
-#include <onix/assert.h>
+#include "hyc.h"
 
 #define LOGK(fmt, args...) DEBUGK(fmt, ##args)
 

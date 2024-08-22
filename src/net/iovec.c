@@ -1,8 +1,4 @@
-#include <onix/net/socket.h>
-#include <onix/arena.h>
-#include <onix/task.h>
-#include <onix/string.h>
-#include <onix/memory.h>
+#include "hyc.h"
 
 err_t iovec_check(iovec_t *iov, int iovlen, int write)
 {

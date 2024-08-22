@@ -1,6 +1,4 @@
-#include <onix/net/port.h>
-#include <onix/memory.h>
-#include <onix/assert.h>
+#include "hyc.h"
 
 int port_get(port_map_t *map, u16 port)
 {

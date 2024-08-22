@@ -1,8 +1,4 @@
-
-#include <onix/net.h>
-#include <onix/assert.h>
-#include <onix/device.h>
-#include <onix/string.h>
+#include "hyc.h"
 
 static netif_t *loopif = NULL;
 

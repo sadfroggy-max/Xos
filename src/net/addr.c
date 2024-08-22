@@ -1,7 +1,4 @@
-#include <onix/net/addr.h>
-#include <onix/string.h>
-#include <onix/stdlib.h>
-#include <onix/errno.h>
+#include "hyc.h"
 
 // MAC 地址拷贝
 void eth_addr_copy(eth_addr_t dst, eth_addr_t src)

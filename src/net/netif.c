@@ -1,17 +1,4 @@
-#include <onix/net.h>
-#include <onix/net/dhcp.h>
-#include <onix/list.h>
-#include <onix/task.h>
-#include <onix/device.h>
-#include <onix/arena.h>
-#include <onix/string.h>
-#include <onix/stdio.h>
-#include <onix/string.h>
-#include <onix/assert.h>
-#include <onix/syscall.h>
-#include <onix/debug.h>
-#include <onix/errno.h>
-#include <onix/memory.h>
+#include "hyc.h"
 
 #define LOGK(fmt, args...) DEBUGK(fmt, ##args);
 

@@ -1,7 +1,4 @@
-#include <onix/net/tcp.h>
-#include <onix/string.h>
-#include <onix/assert.h>
-#include <onix/debug.h>
+#include "hyc.h"
 
 #define LOGK(fmt, args...) DEBUGK(fmt, ##args)
 

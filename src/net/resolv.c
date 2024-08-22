@@ -1,12 +1,4 @@
-#include <onix/net/types.h>
-#include <onix/net.h>
-#include <onix/memory.h>
-#include <onix/syscall.h>
-#include <onix/mutex.h>
-#include <onix/fs.h>
-#include <onix/string.h>
-#include <onix/debug.h>
-#include <onix/errno.h>
+#include "hyc.h"
 
 #define LOGK(fmt, args...) DEBUGK(fmt, ##args)
 

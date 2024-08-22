@@ -1,13 +1,4 @@
-#include <onix/net/raw.h>
-#include <onix/net/socket.h>
-#include <onix/net.h>
-#include <onix/fs.h>
-#include <onix/arena.h>
-#include <onix/task.h>
-#include <onix/string.h>
-#include <onix/assert.h>
-#include <onix/debug.h>
-#include <onix/errno.h>
+#include "hyc.h"
 
 #define LOGK(fmt, args...) DEBUGK(fmt, ##args)
 

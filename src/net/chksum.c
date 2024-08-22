@@ -1,5 +1,4 @@
-#include <onix/net/chksum.h>
-#include <onix/net/types.h>
+#include "hyc.h"
 
 #define CRC_POLY 0xEDB88320
 
