@@ -1,5 +1,4 @@
-#include <onix/errno.h>
-#include <onix/types.h>
+#include "hyc.h"
 
 typedef struct strerror_t
 {

@@ -1,5 +1,4 @@
-#include <onix/fifo.h>
-#include <onix/assert.h>
+#include "hyc.h"
 
 static _inline u32 fifo_next(fifo_t *fifo, u32 pos)
 {

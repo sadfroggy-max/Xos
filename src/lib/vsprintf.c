@@ -3,9 +3,7 @@
  * Wirzenius wrote this portably, Torvalds fucked it up :-)
  */
 
-#include <onix/stdarg.h>
-#include <onix/string.h>
-#include <onix/assert.h>
+#include "hyc.h"
 
 #define ZEROPAD 0x01 // 填充零
 #define SIGN 0x02    // unsigned/signed long

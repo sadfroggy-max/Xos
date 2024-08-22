@@ -1,5 +1,4 @@
-#include <onix/syscall.h>
-#include <onix/signal.h>
+#include "hyc.h"
 
 static _inline u32 _syscall0(u32 nr)
 {

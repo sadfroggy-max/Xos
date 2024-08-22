@@ -1,4 +1,4 @@
-#include <onix/stdlib.h>
+#include "hyc.h"
 
 // 延迟
 void delay(u32 count)

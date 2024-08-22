@@ -1,6 +1,4 @@
-
-#include <onix/list.h>
-#include <onix/assert.h>
+#include "hyc.h"
 
 // 初始化链表
 void list_init(list_t *list)

@@ -3,9 +3,7 @@
  * @date: 2022-06-28
  */
 
-#include <onix/stdarg.h>
-#include <onix/stdio.h>
-#include <onix/syscall.h>
+#include "hyc.h"
 
 static char buf[1024];
 

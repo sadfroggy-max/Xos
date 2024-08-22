@@ -1,6 +1,4 @@
-#include <onix/types.h>
-#include <onix/syscall.h>
-#include <onix/string.h>
+#include "hyc.h"
 
 int main(int argc, char **argv, char **envp);
 

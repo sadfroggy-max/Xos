@@ -1,5 +1,4 @@
-#include <onix/time.h>
-#include <onix/stdlib.h>
+#include "hyc.h"
 
 #define MINUTE 60          // 每分钟的秒数
 #define HOUR (60 * MINUTE) // 每小时的秒数

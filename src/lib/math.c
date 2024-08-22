@@ -1,4 +1,4 @@
-#include <onix/math.h>
+#include "hyc.h"
 
 double sin(double x)
 {

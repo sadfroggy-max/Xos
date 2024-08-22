@@ -1,4 +1,4 @@
-#include <onix/string.h>
+#include "hyc.h"
 
 char *strcpy(char *dest, const char *src)
 {
