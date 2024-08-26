@@ -21,12 +21,14 @@ static timer_t *timer_get()
     return timer;
 }
 
+// 释放定时器
 void timer_put(timer_t *timer)
 {
     list_remove(&timer->node);
     kfree(timer);
 }
 
+// 默认超时解除阻塞
 void default_timeout(timer_t *timer)
 {
     // assert(timer->task->node.next);
@@ -42,7 +44,7 @@ timer_t *timer_add(u32 expire_ms, handler_t handler, void *arg)
     timer->arg = arg;
     timer->active = false;
 
-    list_insert_sort(&timer_list, &timer->node, element_node_offset(timer_t, node, expires));
+    list_insert_sort(&timer_list, &timer->node, element_node_offset(timer_t, node, expires)); // 插入排序，从小到大
     return timer;
 }
 
@@ -98,7 +100,7 @@ void timer_remove(task_t *task)
 
 void timer_wakeup()
 {
-    while (timer_expires() <= jiffies)
+    while (timer_expires() <= jiffies) // 等待时间已经过了
     {
         timer_t *timer = element_entry(timer_t, node, timer_list.head.next);
         timer->active = true;

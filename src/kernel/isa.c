@@ -19,19 +19,19 @@ enum
     DMA0_MASK1 = 0x0A,        // 主 DMA 单通道掩码寄存器
     DMA0_MODE = 0x0B,         // 主 DMA 模式寄存器
     DMA0_RESET = 0x0C,        // 主 DMA 触发器重置寄存器
-    DMA0_TEMP = 0x0d,         // 主 DMA 中间寄存器
-    DMA0_MASTER_CLEAR = 0x0d, // 主 DMA 主控重置寄存器
-    DMA0_MASK_CLEAR = 0x0E,   // 主 DMA 掩码重置寄存器
+    DMA0_TEMP = 0x0D,         // 主 DMA 临时寄存器
+    DMA0_MASTER_CLEAR = 0x0D, // 主 DMA 主控清除寄存器
+    DMA0_MASK_CLEAR = 0x0E,   // 主 DMA 掩码清除寄存器
     DMA0_MASK2 = 0x0F,        // 主 DMA 多通道掩码寄存器
 
-    DMA1_CHAN4_ADDR = 0XC0,  // 通道 4 起始地址寄存器 (未使用)
-    DMA1_CHAN4_COUNT = 0XC2, // 通道 4 计数寄存器 (未使用)
-    DMA1_CHAN5_ADDR = 0XC4,  // 通道 5 起始地址寄存器
-    DMA1_CHAN5_COUNT = 0XC6, // 通道 5 计数寄存器
-    DMA1_CHAN6_ADDR = 0XC8,  // 通道 6 起始地址寄存器
-    DMA1_CHAN6_COUNT = 0XCA, // 通道 6 计数寄存器
-    DMA1_CHAN7_ADDR = 0XCC,  // 通道 7 起始地址寄存器
-    DMA1_CHAN7_COUNT = 0XCE, // 通道 7 计数寄存器
+    DMA1_CHAN4_ADDR = 0xC0,  // 通道 4 起始地址寄存器 (未使用)
+    DMA1_CHAN4_COUNT = 0xC2, // 通道 4 计数寄存器 (未使用)
+    DMA1_CHAN5_ADDR = 0xC4,  // 通道 5 起始地址寄存器
+    DMA1_CHAN5_COUNT = 0xC6, // 通道 5 计数寄存器
+    DMA1_CHAN6_ADDR = 0xC8,  // 通道 6 起始地址寄存器
+    DMA1_CHAN6_COUNT = 0xCA, // 通道 6 计数寄存器
+    DMA1_CHAN7_ADDR = 0xCC,  // 通道 7 起始地址寄存器
+    DMA1_CHAN7_COUNT = 0xCE, // 通道 7 计数寄存器
 
     DMA1_STATUS = 0xD0,       // 从 DMA 状态寄存器
     DMA1_COMMAND = 0xD0,      // 从 DMA 命令寄存器
@@ -39,9 +39,9 @@ enum
     DMA1_MASK1 = 0xD4,        // 从 DMA 单通道掩码寄存器
     DMA1_MODE = 0xD6,         // 从 DMA 模式寄存器
     DMA1_RESET = 0xD8,        // 从 DMA 触发器重置寄存器
-    DMA1_TEMP = 0xDA,         // 从 DMA 中间寄存器
-    DMA1_MASTER_CLEAR = 0xDA, // 从 DMA 主控重置寄存器
-    DMA1_MASK_CLEAR = 0xDC,   // 从 DMA 掩码重置寄存器
+    DMA1_TEMP = 0xDA,         // 从 DMA 临时寄存器
+    DMA1_MASTER_CLEAR = 0xDA, // 从 DMA 主控清除寄存器
+    DMA1_MASK_CLEAR = 0xDC,   // 从 DMA 掩码清除寄存器
     DMA1_MASK2 = 0xDE,        // 从 DMA 多通道掩码寄存器
 
     DMA0_CHAN1_PAGE = 0x83, // 通道 1 页地址寄存器
@@ -53,8 +53,8 @@ enum
     DMA1_CHAN7_PAGE = 0x8A, // 通道 7 页地址寄存器
 };
 
-// 各通道掩码寄存器
-static u8 DMA_MASK1[] = {
+// 各通道掩码寄存器数组
+static u8 DMA_MASKS[] = {
     DMA0_MASK1,
     DMA0_MASK1,
     DMA0_MASK1,
@@ -65,8 +65,8 @@ static u8 DMA_MASK1[] = {
     DMA1_MASK1,
 };
 
-// 各通道模式寄存器
-static u8 DMA_MODE[] = {
+// 各通道模式寄存器数组
+static u8 DMA_MODES[] = {
     DMA0_MODE,
     DMA0_MODE,
     DMA0_MODE,
@@ -77,8 +77,8 @@ static u8 DMA_MODE[] = {
     DMA1_MODE,
 };
 
-// 各通道触发器重置寄存器
-static u8 DMA_RESET[] = {
+// 各通道触发器重置寄存器数组
+static u8 DMA_RESETS[] = {
     DMA0_RESET,
     DMA0_RESET,
     DMA0_RESET,
@@ -89,8 +89,8 @@ static u8 DMA_RESET[] = {
     DMA1_RESET,
 };
 
-// 各通道起始地址寄存器
-static u8 DMA_ADDR[] = {
+// 各通道起始地址寄存器数组
+static u8 DMA_ADDRS[] = {
     DMA0_CHAN0_ADDR,
     DMA0_CHAN1_ADDR,
     DMA0_CHAN2_ADDR,
@@ -101,8 +101,8 @@ static u8 DMA_ADDR[] = {
     DMA1_CHAN7_ADDR,
 };
 
-// 各通道计数寄存器
-static u8 DMA_COUNT[] = {
+// 各通道计数寄存器数组
+static u8 DMA_COUNTS[] = {
     DMA0_CHAN0_COUNT,
     DMA0_CHAN1_COUNT,
     DMA0_CHAN2_COUNT,
@@ -113,8 +113,8 @@ static u8 DMA_COUNT[] = {
     DMA1_CHAN7_COUNT,
 };
 
-// 页地址寄存器
-static u8 DMA_PAGE[] = {
+// 页地址寄存器数组
+static u8 DMA_PAGES[] = {
     0,
     DMA0_CHAN1_PAGE,
     DMA0_CHAN2_PAGE,
@@ -130,26 +130,26 @@ static u8 DMA_PAGE[] = {
 
 #define ISA_DMA0_CHAN2_PAGE 0x81
 
-// 设置 DMA 掩码
+// 设置 DMA 通道掩码
 void isa_dma_mask(u8 channel, bool mask)
 {
     assert(channel < 8);
-    u16 port = DMA_MASK1[channel];
-    u8 data = channel % 4;
+    u16 port = DMA_MASKS[channel];
+    u8 value = channel % 4;
     if (!mask)
     {
-        data |= 0x4;
+        value |= 0x4;
     }
-    outb(port, data);
+    outb(port, value);
 }
 
-// 设置起始地址
-void isa_dma_addr(u8 channel, void *addr)
+// 设置 DMA 起始地址
+void isa_dma_addr(u8 channel, void *address)
 {
     assert(channel < 8);
-    u16 port = DMA_ADDR[channel];
+    u16 port = DMA_ADDRS[channel];
 
-    u32 offset = ((u32)addr) % 0x10000;
+    u32 offset = ((u32)address) % 0x10000;
     if (channel >= 5)
     {
         offset >>= 1;
@@ -157,15 +157,15 @@ void isa_dma_addr(u8 channel, void *addr)
     outb(port, offset & 0xFF);
     outb(port, (offset >> 8) & 0xFF);
 
-    port = DMA_PAGE[channel];
-    outb(port, (u32)addr >> 16);
+    port = DMA_PAGES[channel];
+    outb(port, (u32)address >> 16);
 }
 
-// 设置传输大小
+// 设置 DMA 传输大小
 void isa_dma_size(u8 channel, u32 size)
 {
     assert(channel < 8);
-    u16 port = DMA_COUNT[channel];
+    u16 port = DMA_COUNTS[channel];
     if (channel >= 5)
     {
         size >>= 1;
@@ -179,14 +179,14 @@ void isa_dma_size(u8 channel, u32 size)
 void isa_dma_mode(u8 channel, u8 mode)
 {
     assert(channel < 8);
-    u16 port = DMA_MODE[channel];
+    u16 port = DMA_MODES[channel];
     outb(port, mode | (channel % 4));
 }
 
-// 重置 DMA
+// 重置 DMA 通道
 void isa_dma_reset(u8 channel)
 {
     assert(channel < 8);
-    u16 port = DMA_RESET[channel];
+    u16 port = DMA_RESETS[channel];
     outb(port, 0);
 }

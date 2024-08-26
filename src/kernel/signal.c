@@ -37,7 +37,7 @@ int sys_ssetmask(int newmask)
 
     task_t *task = running_task();
     int old = task->blocked;
-    task->blocked = newmask & ~SIGMASK(SIGKILL);
+    task->blocked = newmask & ~SIGMASK(SIGKILL); //确保 SIGKILL 信号不能被屏蔽
     return old;
 }
 
@@ -55,7 +55,7 @@ int sys_signal(int sig, int handler, int restorer)
     return handler;
 }
 
-// 注册信号处理函数，更高级的一种方式
+// 注册信号处理函数，更高级的一种方式(允许更灵活地注册信号处理函数，并能够传入旧的处理函数来保存。它还可以设置额外的信号处理标志 flags 和屏蔽信号 mask)
 int sys_sigaction(int sig, sigaction_t *action, sigaction_t *oldaction)
 {
     if (sig < MINSIG || sig > MAXSIG || sig == SIGKILL)
@@ -73,7 +73,7 @@ int sys_sigaction(int sig, sigaction_t *action, sigaction_t *oldaction)
     return 0;
 }
 
-// 发送信号
+// 发送信号sig
 int sys_kill(pid_t pid, int sig)
 {
     if (sig < MINSIG || sig > MAXSIG)

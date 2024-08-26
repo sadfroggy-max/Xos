@@ -17,183 +17,184 @@
 
 #define LOGK(fmt, args...) DEBUGK(fmt, ##args)
 
-#define FDT_NONE 0
-#define FDT_144M 4
-#define FDT_INVALID -1
+#define DRIVE_NONE 0
+#define DRIVE_144M 4
+#define DRIVE_INVALID -1
 
-#define FDC_OUTB_TIMEOUT 1000
-#define FDC_INB_TIMEOUT 1000
-#define FDC_WAIT_TIMEOUT 10000
-#define FDC_MOTOR_WAITING 1     // 这里等待时间实际可能太小，但在模拟器中无关
-#define FDC_MOTOR_TIMEOUT 10000 // 超时未使用软盘，则关闭马达
+#define TIMEOUT_OUT 1000
+#define TIMEOUT_IN 1000
+#define TIMEOUT_WAIT 10000
+#define MOTOR_WAITING_TIME 1     // 这里的时间实际可能较短，但在模拟器中可以接受
+#define MOTOR_INACTIVITY_TIMEOUT 10000 // 马达超时未使用则关闭
 
-#define FDC_DOR 0x3F2  // Digital Output Register
-#define FDC_MSR 0x3F4  // Main Status Register (input)
-#define FDC_DRS 0x3F4  // Data Rate Select Register (output)
-#define FDC_DATA 0x3F5 // Data Register
-#define FDC_DIR 0x3F7  // Digital Input Register (input)
-#define FDC_CCR 0x3F7  // Configuration Control Register
+#define REG_DOR 0x3F2  // Digital Output Register
+#define REG_MSR 0x3F4  // Main Status Register (input)
+#define REG_DRS 0x3F4  // Data Rate Select Register (output)
+#define REG_DATA 0x3F5 // Data Register
+#define REG_DIR 0x3F7  // Digital Input Register (input)
+#define REG_CCR 0x3F7  // Configuration Control Register
 
-#define MSR_ACTA 0x1   // 驱动器 0 寻道
-#define MSR_ACTB 0x2   // 驱动器 1 寻道
-#define MSR_ACTC 0x4   // 驱动器 2 寻道
-#define MSR_ACTD 0x8   // 驱动器 3 寻道
-#define MSR_BUSY 0x10  // 命令忙
-#define MSR_NDMA 0x20  // 0 - 为 DMA 数据传输模式，1 - 为非 DMA 模式
-#define MSR_DIO 0x40   // 传输方向：0 - CPU -> FDC，1 - 相反
-#define MSR_READY 0x80 // 数据寄存器就绪位
+#define MSR_DRIVE_A 0x1   // 驱动器 A
+#define MSR_DRIVE_B 0x2   // 驱动器 B
+#define MSR_DRIVE_C 0x4   // 驱动器 C
+#define MSR_DRIVE_D 0x8   // 驱动器 D
+#define MSR_CMD_BUSY 0x10  // 命令忙状态
+#define MSR_DMA_MODE 0x20  // 0 - DMA 传输模式，1 - 非 DMA 模式
+#define MSR_IO_DIR 0x40   // 传输方向：0 - CPU -> FDC，1 - FDC -> CPU
+#define MSR_DATA_READY 0x80 // 数据寄存器就绪
 
-#define DOR_DSEL0 0x1  // 选择驱动器
-#define DOR_DSEL1 0x2  // 选择驱动器
-#define DOR_NORMAL 0x4 // 常规状态 该位为 0 表示重置
-#define DOR_IRQ 0x8    // 中断允许
-#define DOR_MOTA 0x10  // 驱动器 0 马达开启
-#define DOR_MOTB 0x20  // 驱动器 1 马达开启
-#define DOR_MOTC 0x40  // 驱动器 2 马达开启
-#define DOR_MOTD 0x80  // 驱动器 3 马达开启
+#define DOR_SELECT_A 0x1  // 选择驱动器 A
+#define DOR_SELECT_B 0x2  // 选择驱动器 B
+#define DOR_NORM_OP 0x4 // 正常操作状态
+#define DOR_ENABLE_IRQ 0x8    // 使能中断
+#define DOR_MOTOR_A 0x10  // 启动驱动器 A 的马达
+#define DOR_MOTOR_B 0x20  // 启动驱动器 B 的马达
+#define DOR_MOTOR_C 0x40  // 启动驱动器 C 的马达
+#define DOR_MOTOR_D 0x80  // 启动驱动器 D 的马达
 
-#define DIR_CHANGED 0x80 // 磁盘发生变化
+#define DIR_CHANGE 0x80 // 软盘发生改变
 
-#define CMD_SPECIFY 0x03     // Specify drive timings
-#define CMD_WRITE 0xC5       // Write data (+ MT,MFM)
-#define CMD_READ 0xE6        // Read data (+ MT,MFM,SK)
-#define CMD_RECALIBRATE 0x07 // Recalibrate
-#define CMD_SENSEI 0x08      // Sense interrupt status
-#define CMD_FORMAT 0x4D      // Format track (+ MFM)
-#define CMD_SEEK 0x0F        // Seek track
-#define CMD_VERSION 0x10     // FDC version
-#define CMD_RESET 0xFE       // FDC Reset
+#define CMD_SET_PARAMS 0x03     // 设置驱动器参数
+#define CMD_WRITE_DATA 0xC5       // 写数据命令
+#define CMD_READ_DATA 0xE6        // 读数据命令
+#define CMD_RECALIB 0x07       // 重新校准
+#define CMD_GET_INT_STATUS 0x08      // 获取中断状态
+#define CMD_FORMAT_TRACK 0x4D      // 格式化磁道命令
+#define CMD_SEEK_TRACK 0x0F        // 寻道命令
+#define CMD_GET_VERSION 0x10     // 获取 FDC 版本
+#define CMD_FDC_RESET 0xFE       // FDC 复位
 
-#define FDC_82077 0x90 // Extended uPD765B controller
+#define FDC_TYPE_82077 0x90 // 扩展型 uPD765B 控制器
 
-#define MOTOR_OFF 0
-#define MOTOR_DELAY 1
-#define MOTOR_ON 2
+#define MOTOR_STATE_OFF 0
+#define MOTOR_STATE_DELAY 1
+#define MOTOR_STATE_ON 2
 
-#define FD_READ 0
-#define FD_WRITE 1
+#define OP_READ 0
+#define OP_WRITE 1
 
-#define SECTOR_SIZE 512
+#define SECTOR_SZ 512
 
-#define DMA_BUF_ADDR 0x98000 // 不能跨越 64K 边界
+#define DMA_BUFFER_ADDR 0x98000 // 不可跨越 64K 边界
 
-#define RESULT_NR 8
+#define MAX_RESULT 8
 
-typedef struct fdresult_t
+typedef struct fdc_result_t
 {
-    u8 st0;
-    u8 st1;
-    u8 st2;
-    u8 st3;
-    u8 track;
-    u8 head;
-    u8 sector;
-    u8 size;
-} fdresult_t;
+    u8 status0;
+    u8 status1;
+    u8 status2;
+    u8 status3;
+    u8 cur_track;
+    u8 cur_head;
+    u8 cur_sector;
+    u8 cur_size;
+} fdc_result_t;
 
-typedef struct floppy_t
+typedef struct floppy_ctrl_t
 {
-    task_t *waiter; // 等待进程
-    timer_t *timer; // 定时器
-    lock_t lock;    // 锁
+    task_t *pending_task; // 等待任务
+    timer_t *floppy_timer; // 定时器
+    lock_t fdc_lock;    // 控制器锁
 
-    char name[8];
-    int type; // 软盘类型
+    char dev_name[8];
+    int floppy_type; // 软盘类型
 
-    u8 dor; // dor registers
+    u8 dor_register; // 数字输出寄存器
 
-    u8 *buf; // DMA 地址 (其实是一样的)
+    u8 *dma_buffer; // DMA 缓冲区地址
 
     union
     {
-        u8 tracks;    // 磁道数
-        u8 cylinders; // 柱面数
+        u8 num_tracks;    // 磁道数
+        u8 num_cylinders; // 柱面数
     };
-    u8 heads;   // 磁头数
-    u8 sectors; // 每磁道扇区数
-    u8 gap3;    // GAP3 长度
+    u8 num_heads;   // 磁头数
+    u8 num_sectors; // 每磁道扇区数
+    u8 gap_length;  // GAP3 长度
 
-    u8 drive;   // 磁盘序号
-    u8 st0;     //
-    u8 track;   // 当前磁道
-    u8 motor;   // 马达状态
-    u8 changed; // 磁盘发生改变
+    u8 cur_drive;   // 当前驱动器号
+    u8 cur_status0;     // 状态寄存器 0
+    u8 cur_track;   // 当前磁道号
+    u8 motor_state;   // 马达状态
+    u8 disk_changed; // 软盘变化标志
 
     union
     {
-        u8 st[RESULT_NR];
-        fdresult_t result;
+        u8 status[MAX_RESULT];
+        fdc_result_t result;
     };
 
-} floppy_t;
+} floppy_ctrl_t;
 
-// 为简单起见，系统暂时只支持一个 1.44M 软盘
-static floppy_t floppy;
+// 系统目前只支持一个 1.44M 软盘设备
+static floppy_ctrl_t fdc;
 
-// 软盘中断
-static void fd_handler(int vector)
+// 软盘中断处理函数
+static void fd_isr(int irq_num)
 {
-    send_eoi(vector); // 发送中断结束信号；
-    LOGK("floppy handler ....\n");
+    send_eoi(irq_num); // 发送中断结束信号；
+    LOGK("floppy interrupt triggered...\n");
 
-    floppy_t *fd = &floppy;
+    floppy_ctrl_t *fd = &fdc;
 
-    if (fd->waiter)
+    if (fd->pending_task)
     {
-        task_unblock(fd->waiter, EOK);
-        fd->waiter = NULL;
+        task_unblock(fd->pending_task, EOK);
+        fd->pending_task = NULL;
     }
 }
 
-// 获得软盘驱动器类型
-static u8 fd_type()
+// 获取软驱类型
+static u8 get_drive_type()
 {
     u8 type = cmos_read(0x10);
-    return (type >> 4) & 0xf; // 高四位表示主软驱
+    return (type >> 4) & 0xf; // 主软驱类型在高四位
 }
 
-static err_t fd_outb(u8 byte)
+static err_t fdc_outb(u8 data)
 {
-    u32 expire = timer_expire_jiffies(FDC_OUTB_TIMEOUT);
+    u32 timeout = timer_expire_jiffies(TIMEOUT_OUT);
 
     extern u32 jiffies;
 
     while (true)
     {
-        if (timer_is_expires(expire))
+        if (timer_is_expires(timeout))
             return -ETIME;
-        u8 msr = inb(FDC_MSR) & (MSR_READY | MSR_DIO);
-        LOGK("out state 0x%X %d %d...\n", msr, expire, jiffies);
-        if (msr == MSR_READY)
+        u8 msr = inb(REG_MSR) & (MSR_DATA_READY | MSR_IO_DIR);
+        LOGK("out state 0x%X %d %d...\n", msr, timeout, jiffies);
+        if (msr == MSR_DATA_READY)
         {
-            outb(FDC_DATA, byte);
+            outb(REG_DATA, data);
             return EOK;
         }
         task_yield();
     }
 }
 
-static err_t fd_inb()
+static err_t fdc_inb()
 {
-    u32 expire = timer_expire_jiffies(FDC_INB_TIMEOUT);
+    u32 timeout = timer_expire_jiffies(TIMEOUT_IN);
     while (true)
     {
-        if (timer_is_expires(expire))
+        if (timer_is_expires(timeout))
             return -ETIME;
-        u8 msr = inb(FDC_MSR) & (MSR_READY | MSR_DIO | MSR_BUSY);
-        if (msr == (MSR_READY | MSR_DIO | MSR_BUSY))
-            return inb(FDC_DATA) & 0xFF;
+        u8 msr = inb(REG_MSR) & (MSR_DATA_READY | MSR_IO_DIR | MSR_CMD_BUSY);
+        if (msr == (MSR_DATA_READY | MSR_IO_DIR | MSR_CMD_BUSY))
+            return inb(REG_DATA) & 0xFF;
         task_yield();
     }
 }
 
-// 等待中断到来
-static err_t fd_wait(floppy_t *fd)
+// 等待软盘中断
+static err_t wait_for_interrupt(floppy_ctrl_t *fd)
 {
-    assert(!fd->waiter);
-    fd->waiter = running_task();
-    return task_block(fd->waiter, NULL, TASK_BLOCKED, FDC_WAIT_TIMEOUT);
+    assert(!fd->pending_task);
+    fd->pending_task = running_task();
+    return task_block(fd->pending_task, NULL, TASK_BLOCKED, TIMEOUT_WAIT);
 }
+
 
 // 得到执行的结果
 static void fd_result(floppy_t *fd, bool sensei)
@@ -448,22 +449,6 @@ static err_t fd_reset(floppy_t *fd)
 
 static err_t fd_setup(floppy_t *fd)
 {
-    // fd_reset(fd);
-
-    // LOGK("floppy check version...\n");
-    // err_t err;
-    // if ((err = fd_outb(CMD_VERSION)) < EOK)
-    //     return err;
-
-    // u8 result = fd_inb();
-    // LOGK("floppy result 0x%X\n", result);
-    // if (result != FDC_82077)
-    // {
-    //     LOGK("unsupported floppy controller...\n");
-    //     fd->type = FDT_INVALID;
-    //     return -EIO;
-    // }
-
     fd_specify(fd);
     fd_recalibrate(fd);
     return EOK;

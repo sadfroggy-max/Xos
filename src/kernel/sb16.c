@@ -19,46 +19,44 @@
 
 #define LOGK(fmt, args...) DEBUGK(fmt, ##args)
 
-#define SB_MIXER 0x224      // DSP 混合器端口
-#define SB_MIXER_DATA 0x225 // DSP 混合器数据端口
-#define SB_RESET 0x226      // DSP 重置
-#define SB_READ 0x22A       // DSP 读
-#define SB_WRITE 0x22C      // DSP 写
-#define SB_STATE 0x22E      // DSP 读状态
-#define SB_INTR16 0x22F     // DSP 16 位中断响应
+#define SB_MIXER 0x224      // 混音器端口地址
+#define SB_MIXER_DATA 0x225 // 混音器数据端口地址
+#define SB_RESET 0x226      // DSP 复位端口
+#define SB_READ 0x22A       // DSP 数据读取端口
+#define SB_WRITE 0x22C      // DSP 数据写入端口
+#define SB_STATE 0x22E      // DSP 状态读取端口
+#define SB_INTR16 0x22F     // 16 位 DSP 中断响应端口
 
-#define CMD_STC 0x40  // Set Time Constant
-#define CMD_SOSR 0x41 // Set Output Sample Rate
-#define CMD_SISR 0x42 // Set Input Sample Rate
+#define CMD_STC 0x40  // 设置时间常数
+#define CMD_SOSR 0x41 // 设置输出采样率
+#define CMD_SISR 0x42 // 设置输入采样率
 
-#define CMD_SINGLE_IN8 0xC8   // Transfer mode 8bit input
-#define CMD_SINGLE_OUT8 0xC0  // Transfer mode 8bit output
-#define CMD_SINGLE_IN16 0xB8  // Transfer mode 16bit input
-#define CMD_SINGLE_OUT16 0xB0 // Transfer mode 16bit output
+#define CMD_SINGLE_IN8 0xC8   // 单次 8 位输入传输模式
+#define CMD_SINGLE_OUT8 0xC0  // 单次 8 位输出传输模式
+#define CMD_SINGLE_IN16 0xB8  // 单次 16 位输入传输模式
+#define CMD_SINGLE_OUT16 0xB0 // 单次 16 位输出传输模式
 
-#define CMD_AUTO_IN8 0xCE   // Transfer mode 8bit input auto
-#define CMD_AUTO_OUT8 0xC6  // Transfer mode 8bit output auto
-#define CMD_AUTO_IN16 0xBE  // Transfer mode 16bit input auto
-#define CMD_AUTO_OUT16 0xB6 // Transfer mode 16bit output auto
+#define CMD_AUTO_IN8 0xCE   // 自动 8 位输入传输模式
+#define CMD_AUTO_OUT8 0xC6  // 自动 8 位输出传输模式
+#define CMD_AUTO_IN16 0xBE  // 自动 16 位输入传输模式
+#define CMD_AUTO_OUT16 0xB6 // 自动 16 位输出传输模式
 
-#define CMD_ON 0xD1      // Turn speaker on
-#define CMD_OFF 0xD3     // Turn speaker off
-#define CMD_SP8 0xD0     // Stop playing 8 bit channel
-#define CMD_RP8 0xD4     // Resume playback of 8 bit channel
-#define CMD_SP16 0xD5    // Stop playing 16 bit channel
-#define CMD_RP16 0xD6    // Resume playback of 16 bit channel
-#define CMD_VERSION 0xE1 // Turn speaker off
+#define CMD_ON 0xD1      // 打开扬声器
+#define CMD_OFF 0xD3     // 关闭扬声器
+#define CMD_SP8 0xD0     // 停止 8 位通道播放
+#define CMD_RP8 0xD4     // 恢复 8 位通道播放
+#define CMD_SP16 0xD5    // 停止 16 位通道播放
+#define CMD_RP16 0xD6    // 恢复 16 位通道播放
+#define CMD_VERSION 0xE1 // 获取 DSP 版本
 
 #define MODE_MONO8 0x00
-// #define MODE_STEREO8 0x20
-// #define MODE_MONO16 0x10
 #define MODE_STEREO16 0x30
 
-#define STATUS_READ 0x80  // read buffer status
-#define STATUS_WRITE 0x80 // write buffer status
+#define STATUS_READ 0x80  // 读缓冲区状态
+#define STATUS_WRITE 0x80 // 写缓冲区状态
 
-#define DMA_BUF_ADDR 0x90000 // 不能跨越 64K 边界
-#define DMA_BUF_SIZE 0x8000  // 缓冲区长度
+#define DMA_BUF_ADDR 0x90000 // 缓冲区地址，不能跨越 64K 边界
+#define DMA_BUF_SIZE 0x8000  // 缓冲区大小
 
 #define SAMPLE_RATE 44100 // 采样率
 
@@ -66,9 +64,9 @@ typedef struct sb_t
 {
     task_t *waiter;
     lock_t lock;
-    char *addr; // DMA 地址
-    u8 mode;    // 模式
-    u8 channel; // DMA 通道
+    char *addr; // DMA 缓冲区地址
+    u8 mode;    // DSP 模式
+    u8 channel; // DMA 通道号
 } sb_t;
 
 static sb_t sb16;
@@ -141,9 +139,8 @@ int sb16_ioctl(sb_t *sb, int cmd, void *args, int flags)
 {
     switch (cmd)
     {
-    // 设置 tty 参数
     case SB16_CMD_ON:
-        sb_reset(sb);    // 重置 DSP
+        sb_reset(sb);    // 复位 DSP
         sb_intr_irq(sb); // 设置中断
         sb_out(CMD_ON);  // 打开声霸卡
         return EOK;

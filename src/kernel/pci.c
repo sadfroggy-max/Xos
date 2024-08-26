@@ -1,4 +1,3 @@
-
 #include <onix/pci.h>
 #include <onix/io.h>
 #include <onix/arena.h>
@@ -19,7 +18,7 @@
     ((bus & 0xff) << 16) |               \
     ((dev & 0x1f) << 11) |               \
     ((func & 0x7) << 8) |                \
-    addr)
+    (addr))
 
 static list_t pci_device_list;
 
@@ -161,54 +160,55 @@ void pci_outl(u8 bus, u8 dev, u8 func, u8 addr, u32 value)
     outl(PCI_CONF_DATA, value);
 }
 
-static u32 pci_size(u32 base, u32 mask)
+static u32 calculate_pci_size(u32 base, u32 mask)
 {
-    // 去掉必须设置的低位
+    // Remove the bits that must be set
     u32 size = mask & base;
 
-    // 按位取反再加1得到大小
+    // Compute size by inverting and adding 1
     size = ~size + 1;
 
     return size;
 }
 
-// 获取某种类型的 Base Address Register
+
+// 获取指定类型的 Base Address Register
 err_t pci_find_bar(pci_device_t *device, pci_bar_t *bar, int type)
 {
     for (size_t idx = 0; idx < PCI_BAR_NR; idx++)
     {
-        u8 addr = PCI_CONF_BASE_ADDR0 + (idx << 2);
-        u32 value = pci_inl(device->bus, device->dev, device->func, addr);
-        pci_outl(device->bus, device->dev, device->func, addr, -1);
-        u32 len = pci_inl(device->bus, device->dev, device->func, addr);
-        pci_outl(device->bus, device->dev, device->func, addr, value);
+        u8 addr = PCI_CONF_BASE_ADDR0 + (idx * 4);
+        u32 original_value = pci_inl(device->bus, device->dev, device->func, addr);
+        pci_outl(device->bus, device->dev, device->func, addr, 0xFFFFFFFF);
+        u32 updated_value = pci_inl(device->bus, device->dev, device->func, addr);
+        pci_outl(device->bus, device->dev, device->func, addr, original_value);
 
-        if (value == 0)
+        if (original_value == 0)
             continue;
 
-        if (len == 0 || len == -1)
+        if (updated_value == 0 || updated_value == 0xFFFFFFFF)
             continue;
 
-        if (value == -1)
-            value = 0;
+        if (original_value == 0xFFFFFFFF)
+            original_value = 0;
 
-        if ((value & 1) && type == PCI_BAR_TYPE_IO)
+        if ((original_value & 1) && type == PCI_BAR_TYPE_IO)
         {
-            bar->iobase = value & PCI_BAR_IO_MASK;
-            bar->size = pci_size(len, PCI_BAR_IO_MASK);
+            bar->iobase = original_value & PCI_BAR_IO_MASK;
+            bar->size = pci_size(updated_value, PCI_BAR_IO_MASK);
             return EOK;
         }
-        if (!(value & 1) && type == PCI_BAR_TYPE_MEM)
+        if (!(original_value & 1) && type == PCI_BAR_TYPE_MEM)
         {
-            bar->iobase = value & PCI_BAR_MEM_MASK;
-            bar->size = pci_size(len, PCI_BAR_MEM_MASK);
+            bar->iobase = original_value & PCI_BAR_MEM_MASK;
+            bar->size = pci_size(updated_value, PCI_BAR_MEM_MASK);
             return EOK;
         }
     }
     return -EIO;
 }
 
-// 获得 PCI 类型描述
+// 获取 PCI 设备类型描述
 const char *pci_classname(u32 classcode)
 {
     for (size_t i = 0; pci_classnames[i].name != NULL; i++)
@@ -221,7 +221,7 @@ const char *pci_classname(u32 classcode)
     return "Unknown device";
 }
 
-// 检测设备
+// 检测 PCI 设备
 static void pci_check_device(u8 bus, u8 dev)
 {
     u32 value = 0;
@@ -229,7 +229,7 @@ static void pci_check_device(u8 bus, u8 dev)
     for (u8 func = 0; func < 8; func++)
     {
         value = pci_inl(bus, dev, func, PCI_CONF_VENDOR);
-        u16 vendorid = value & 0xffff;
+        u16 vendorid = value & 0xFFFF;
         if (vendorid == 0 || vendorid == 0xFFFF)
             return;
 
@@ -248,7 +248,7 @@ static void pci_check_device(u8 bus, u8 dev)
 
         value = pci_inl(bus, dev, func, PCI_CONF_REVISION);
         device->classcode = value >> 8;
-        device->revision = value & 0xff;
+        device->revision = value & 0xFF;
 
         LOGK("PCI %02x:%02x.%x %4x:%4x %s\n",
              device->bus, device->dev, device->func,
@@ -257,23 +257,20 @@ static void pci_check_device(u8 bus, u8 dev)
     }
 }
 
-// 通过供应商/设备号查找设备
+// 根据供应商/设备号查找设备
 pci_device_t *pci_find_device(u16 vendorid, u16 deviceid)
 {
     list_t *list = &pci_device_list;
     for (list_node_t *node = list->head.next; node != &list->tail; node = node->next)
     {
         pci_device_t *device = element_entry(pci_device_t, node, node);
-        if (device->vendorid != vendorid)
-            continue;
-        if (device->deviceid != deviceid)
-            continue;
-        return device;
+        if (device->vendorid == vendorid && device->deviceid == deviceid)
+            return device;
     }
     return NULL;
 }
 
-// 通过类型查找设备
+// 根据设备类型查找设备
 pci_device_t *pci_find_device_by_class(u32 classcode)
 {
     list_t *list = &pci_device_list;
@@ -281,22 +278,20 @@ pci_device_t *pci_find_device_by_class(u32 classcode)
     for (list_node_t *node = list->head.next; node != &list->tail; node = node->next)
     {
         pci_device_t *device = element_entry(pci_device_t, node, node);
-        if (device->classcode == classcode)
-            return device;
-        if ((device->classcode & PCI_SUBCLASS_MASK) == classcode)
+        if (device->classcode == classcode || (device->classcode & PCI_SUBCLASS_MASK) == classcode)
             return device;
     }
     return NULL;
 }
 
-// 获得中断 IRQ
+// 获取设备的中断 IRQ
 u8 pci_interrupt(pci_device_t *device)
 {
     u32 data = pci_inl(device->bus, device->dev, device->func, PCI_CONF_INTERRUPT);
-    return data & 0xff;
+    return data & 0xFF;
 }
 
-// 启用总线主控，用于发起 DMA
+// 启用总线主控功能以进行 DMA
 void pci_enable_busmastering(pci_device_t *device)
 {
     u32 data = pci_inl(device->bus, device->dev, device->func, PCI_CONF_COMMAND);
@@ -304,7 +299,7 @@ void pci_enable_busmastering(pci_device_t *device)
     pci_outl(device->bus, device->dev, device->func, PCI_CONF_COMMAND, data);
 }
 
-// PCI 总线枚举
+// 执行 PCI 总线设备枚举
 static void pci_enum_device()
 {
     for (int bus = 0; bus < 256; bus++)
@@ -316,7 +311,7 @@ static void pci_enum_device()
     }
 }
 
-// 初始化 PCI 设备
+// 初始化 PCI 设备系统
 void pci_init()
 {
     list_init(&pci_device_list);

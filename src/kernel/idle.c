@@ -15,7 +15,7 @@ void idle_thread()
         // LOGK("idle task.... %d\n", counter++);
         // BMB;
         asm volatile(
-            "sti\n" // 开中断
+            "sti\n" // 开中断，允许处理器响应外部中断信号
             "hlt\n" // 关闭 CPU，进入暂停状态，等待外中断的到来
         );
         yield(); // 放弃执行权，调度执行其他任务

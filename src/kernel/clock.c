@@ -26,17 +26,18 @@ bool volatile beeping = 0;
 
 void start_beep()
 {
-    if (!beeping)
+    if (!beeping)  // 检查当前是否正在蜂鸣，如果没有则继续
     {
-        outb(SPEAKER_REG, inb(SPEAKER_REG) | 0b11);
-        beeping = true;
+        outb(SPEAKER_REG, inb(SPEAKER_REG) | 0b11);  // 打开扬声器，开始蜂鸣
+        beeping = true;  // 标记为正在蜂鸣
 
-        task_sleep(BEEP_MS);
+        task_sleep(BEEP_MS);  // 让当前任务睡眠一段时间，以产生持续的蜂鸣声
 
-        outb(SPEAKER_REG, inb(SPEAKER_REG) & 0xfc);
-        beeping = false;
+        outb(SPEAKER_REG, inb(SPEAKER_REG) & 0xfc);  // 关闭扬声器，结束蜂鸣
+        beeping = false;  // 标记为蜂鸣结束
     }
 }
+
 
 void clock_handler(int vector)
 {

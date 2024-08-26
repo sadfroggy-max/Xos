@@ -119,33 +119,35 @@ bool _inline task_leader(task_t *task)
 // 任务阻塞
 err_t task_block(task_t *task, list_t *blist, task_state_t state, int timeout_ms)
 {
-    assert(!get_interrupt_state());
-    assert(task->node.next == NULL);
-    assert(task->node.prev == NULL);
+    assert(!get_interrupt_state()); // 确保不能被中断
+    assert(task->node.next == NULL); // 确保任务不在任何的链表中
+    assert(task->node.prev == NULL); // 确保任务不在任何的链表中
 
     if (blist == NULL)
     {
-        blist = &block_list;
+        blist = &block_list; // 使用默认阻塞任务列表
     }
 
     assert(state != TASK_READY && state != TASK_RUNNING);
 
     list_push(blist, &task->node);
-    if (timeout_ms > 0)
+
+    if (timeout_ms > 0)    // 超时
     {
         assert(task->timer == NULL);
-        task->timer = timer_add(timeout_ms, NULL, NULL);
+        task->timer = timer_add(timeout_ms, NULL, NULL); // 为任务添加一个定时器，定时器在超时后触发
     }
 
-    task->state = state;
+    task->state = state; // 更新任务状态
 
     task_t *current = running_task();
+
     if (current == task)
     {
-        schedule();
+        schedule(); // 当前任务就是要被阻塞的任务，则调用调度函数切换到另一个任务
     }
 
-    return task->status;
+    return task->status; // 返回任务状态
 }
 
 // 解除任务阻塞
@@ -155,16 +157,16 @@ void task_unblock(task_t *task, int reason)
 
     if (task->node.next)
     {
-        list_remove(&task->node);
+        list_remove(&task->node); // 从阻塞任务列表中移除
     }
 
     if (task->timer)
     {
         if (!task->timer->active)
         {
-            timer_put(task->timer);
+            timer_put(task->timer); // 如果定时器未激活，则将其放入定时器池中
         }
-        task->timer = NULL;
+        task->timer = NULL; // 清空任务的定时器
     }
 
     assert(task->node.next == NULL);
@@ -223,8 +225,8 @@ void schedule()
         current->state = TASK_READY;
     }
 
-    if (!current->ticks)
-    {
+    if (!current->ticks) // 时间片用完了
+    { // 将当前任务的时间片重置为其优先级值 这个优先级通常决定了任务在多长时间后可以再次被调度
         current->ticks = current->priority;
     }
 
